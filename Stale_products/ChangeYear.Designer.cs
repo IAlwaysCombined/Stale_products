@@ -31,7 +31,6 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageYar = new System.Windows.Forms.TabPage();
             this.buttonCreateSchedule = new System.Windows.Forms.Button();
-            this.textBoxYaer = new System.Windows.Forms.TextBox();
             this.labelYaer = new System.Windows.Forms.Label();
             this.labelProduct = new System.Windows.Forms.Label();
             this.comboBoxChangeProductYear = new System.Windows.Forms.ComboBox();
@@ -41,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxChangeProducQuartal = new System.Windows.Forms.ComboBox();
+            this.textBoxYaer = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.tabPageYar.SuspendLayout();
             this.tabPageQuarter.SuspendLayout();
@@ -59,8 +59,8 @@
             // 
             // tabPageYar
             // 
-            this.tabPageYar.Controls.Add(this.buttonCreateSchedule);
             this.tabPageYar.Controls.Add(this.textBoxYaer);
+            this.tabPageYar.Controls.Add(this.buttonCreateSchedule);
             this.tabPageYar.Controls.Add(this.labelYaer);
             this.tabPageYar.Controls.Add(this.labelProduct);
             this.tabPageYar.Controls.Add(this.comboBoxChangeProductYear);
@@ -75,21 +75,13 @@
             // buttonCreateSchedule
             // 
             this.buttonCreateSchedule.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
-            this.buttonCreateSchedule.Location = new System.Drawing.Point(11, 120);
+            this.buttonCreateSchedule.Location = new System.Drawing.Point(11, 138);
             this.buttonCreateSchedule.Name = "buttonCreateSchedule";
             this.buttonCreateSchedule.Size = new System.Drawing.Size(753, 40);
             this.buttonCreateSchedule.TabIndex = 4;
             this.buttonCreateSchedule.Text = "Построить график";
             this.buttonCreateSchedule.UseVisualStyleBackColor = true;
             this.buttonCreateSchedule.Click += new System.EventHandler(this.buttonCreateSchedule_Click);
-            // 
-            // textBoxYaer
-            // 
-            this.textBoxYaer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
-            this.textBoxYaer.Location = new System.Drawing.Point(518, 34);
-            this.textBoxYaer.Name = "textBoxYaer";
-            this.textBoxYaer.Size = new System.Drawing.Size(246, 32);
-            this.textBoxYaer.TabIndex = 3;
             // 
             // labelYaer
             // 
@@ -139,14 +131,29 @@
             // 
             this.numericUpDownQuartal.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
             this.numericUpDownQuartal.Location = new System.Drawing.Point(567, 45);
+            this.numericUpDownQuartal.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.numericUpDownQuartal.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownQuartal.Name = "numericUpDownQuartal";
             this.numericUpDownQuartal.Size = new System.Drawing.Size(197, 32);
             this.numericUpDownQuartal.TabIndex = 10;
+            this.numericUpDownQuartal.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // buttonCreateScheduleQuartal
             // 
             this.buttonCreateScheduleQuartal.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
-            this.buttonCreateScheduleQuartal.Location = new System.Drawing.Point(11, 132);
+            this.buttonCreateScheduleQuartal.Location = new System.Drawing.Point(11, 115);
             this.buttonCreateScheduleQuartal.Name = "buttonCreateScheduleQuartal";
             this.buttonCreateScheduleQuartal.Size = new System.Drawing.Size(753, 40);
             this.buttonCreateScheduleQuartal.TabIndex = 9;
@@ -183,6 +190,14 @@
             this.comboBoxChangeProducQuartal.Size = new System.Drawing.Size(373, 34);
             this.comboBoxChangeProducQuartal.TabIndex = 5;
             // 
+            // textBoxYaer
+            // 
+            this.textBoxYaer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
+            this.textBoxYaer.Location = new System.Drawing.Point(518, 32);
+            this.textBoxYaer.Name = "textBoxYaer";
+            this.textBoxYaer.Size = new System.Drawing.Size(246, 32);
+            this.textBoxYaer.TabIndex = 5;
+            // 
             // ChangeYear
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -210,7 +225,6 @@
         private System.Windows.Forms.Label labelProduct;
         private System.Windows.Forms.ComboBox comboBoxChangeProductYear;
         private System.Windows.Forms.TabPage tabPageQuarter;
-        private System.Windows.Forms.TextBox textBoxYaer;
         private System.Windows.Forms.Label labelYaer;
         private System.Windows.Forms.Button buttonCreateSchedule;
         private System.Windows.Forms.NumericUpDown numericUpDownQuartal;
@@ -218,6 +232,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxChangeProducQuartal;
+        private System.Windows.Forms.TextBox textBoxYaer;
     }
 }
 

@@ -52,9 +52,9 @@
             this.labelOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
             this.labelOutput.Location = new System.Drawing.Point(12, 418);
             this.labelOutput.Name = "labelOutput";
-            this.labelOutput.Size = new System.Drawing.Size(80, 26);
+            this.labelOutput.Size = new System.Drawing.Size(86, 26);
             this.labelOutput.TabIndex = 1;
-            this.labelOutput.Text = "Вывод";
+            this.labelOutput.Text = "Вывод:";
             // 
             // label2
             // 

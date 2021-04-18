@@ -15,16 +15,19 @@ namespace Stale_products
 {
     public partial class Schedule : Form
     {
-
-        public static string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=TV.mdb;";
-
+        public static string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=TV.mdb;"; //Строка подключения к бд
+        public static string queryAdapter = "SELECT Quantity_Of_Goods_Sold, Quantity_Of_Purchased_Goods, Quantity_Of_Goods  FROM Product_Sale WHERE Name_Product = '{0}'"; //Строка запроса
+        public static string queryCommand = "SELECT * FROM Product_Sale WHERE Name_Product = '{0}'"; //Строка запроса
 
         // Объявление объектов
-        private OleDbConnection myConnection;
         private OleDbDataAdapter dataAdapter;
         private DataSet dataSet;
         private DataTable table;
-
+        private OleDbConnection connection;
+        private OleDbCommand command;
+        private OleDbDataReader dataReader;
+        private ChangeYear changeYear;
+        private LineSeries line;
 
         /// <summary>
         /// Инициализация всех компонентов
@@ -32,14 +35,45 @@ namespace Stale_products
         public Schedule()
         {
             InitializeComponent();
-
-            myConnection = new OleDbConnection(connectionString);
-            myConnection.Open();
-            dataAdapter = new OleDbDataAdapter("SELECT * FROM Product_Sale", connectionString);
+            connection = new OleDbConnection(connectionString);
+            command = connection.CreateCommand();
+            dataAdapter = new OleDbDataAdapter(command.CommandText = String.Format(queryAdapter, Data.modelProduct), connectionString);
             dataSet = new DataSet();
             dataAdapter.Fill(dataSet, "Product_Sale");
             table = dataSet.Tables["Product_Sale"];
             cartesianChart1.LegendLocation = LegendLocation.Bottom;
+            Output(command, connection);
+        }
+
+        /// <summary>
+        /// Метод формирование вывода
+        /// </summary>
+        /// <param name="сommand"></param>
+        /// <param name="myOleDbConnection"></param>
+        private void Output(OleDbCommand сommand, OleDbConnection сonnection)
+        {
+            command.CommandText = String.Format(queryCommand, Data.modelProduct);
+            сonnection.Open();
+            dataReader = сommand.ExecuteReader();
+            dataReader.Read();
+            int sale = Convert.ToInt32(dataReader["Quantity_Of_Goods_Sold"]); // Преобразование количества проданных товаров в int
+            int purchase = Convert.ToInt32(dataReader["Quantity_Of_Purchased_Goods"]); // Преобразование количества закупленных товаров в int
+            int stock = Convert.ToInt32(dataReader["Quantity_Of_Goods"]); // Преобразование количества товаров на складе в int
+
+            // Условная конструкция, определяющая спрос
+            if (sale*2 <= stock)
+            {
+                labelOutputText.Text = "Данная модель склонна к устареванию";
+            }
+            else if (sale >= stock)
+            {
+                labelOutputText.Text = "Данная модель не склонна к устареванию";
+            }
+            else if(sale < stock && stock < purchase)
+            {
+                labelOutputText.Text = "Данная модель имеет непостоянный характер спроса";
+            }
+            Console.WriteLine(Data.modelProduct);
         }
 
         /// <summary>
@@ -50,30 +84,20 @@ namespace Stale_products
         private void Schedule_Load(object sender, EventArgs e)
         {
             SeriesCollection series = new SeriesCollection();
-
             ChartValues<int> product = new ChartValues<int>();
-
-            List<string> dates = new List<string>();
-
-            foreach(DataRow row in table.Rows)
+            foreach (DataRow row in table.Rows)
             {
-                product.Add(Convert.ToInt32(row["Quantity_Of_Goods_Sold"]));
-
-                dates.Add(Convert.ToDateTime(row["Date"]).ToShortDateString());
+                foreach(DataColumn column in table.Columns)
+                {
+                    var field1 = row[column].ToString();
+                    product.Add(Convert.ToInt32(field1));
+                }
             }
-
             cartesianChart1.AxisX.Clear();
-            cartesianChart1.AxisX.Add(new Axis()
-            {
-                Labels = dates
-            });
-
-            LineSeries line = new LineSeries();
-            line.Title = "Количество проданных единиц";
+            line = new LineSeries();
+            line.Title = "Количество единиц";
             line.Values = product;
-
             series.Add(line);
-
             cartesianChart1.Series = series;
         }
 
@@ -84,7 +108,7 @@ namespace Stale_products
         /// <param name="e"></param>
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            ChangeYear changeYear = new ChangeYear();
+            changeYear = new ChangeYear();
             changeYear.Show();
             this.Hide();
         }
