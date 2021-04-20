@@ -30,21 +30,20 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageYar = new System.Windows.Forms.TabPage();
+            this.comboBoxYear = new System.Windows.Forms.ComboBox();
             this.buttonCreateSchedule = new System.Windows.Forms.Button();
             this.labelYaer = new System.Windows.Forms.Label();
             this.labelProduct = new System.Windows.Forms.Label();
             this.comboBoxChangeProductYear = new System.Windows.Forms.ComboBox();
             this.tabPageQuarter = new System.Windows.Forms.TabPage();
-            this.numericUpDownQuartal = new System.Windows.Forms.NumericUpDown();
             this.buttonCreateScheduleQuartal = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxChangeProducQuartal = new System.Windows.Forms.ComboBox();
-            this.textBoxYaer = new System.Windows.Forms.TextBox();
+            this.comboBoxQuartal = new System.Windows.Forms.ComboBox();
             this.tabControl.SuspendLayout();
             this.tabPageYar.SuspendLayout();
             this.tabPageQuarter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuartal)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -59,7 +58,7 @@
             // 
             // tabPageYar
             // 
-            this.tabPageYar.Controls.Add(this.textBoxYaer);
+            this.tabPageYar.Controls.Add(this.comboBoxYear);
             this.tabPageYar.Controls.Add(this.buttonCreateSchedule);
             this.tabPageYar.Controls.Add(this.labelYaer);
             this.tabPageYar.Controls.Add(this.labelProduct);
@@ -71,6 +70,15 @@
             this.tabPageYar.TabIndex = 0;
             this.tabPageYar.Text = "Год";
             this.tabPageYar.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxYear
+            // 
+            this.comboBoxYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
+            this.comboBoxYear.FormattingEnabled = true;
+            this.comboBoxYear.Location = new System.Drawing.Point(518, 32);
+            this.comboBoxYear.Name = "comboBoxYear";
+            this.comboBoxYear.Size = new System.Drawing.Size(246, 34);
+            this.comboBoxYear.TabIndex = 5;
             // 
             // buttonCreateSchedule
             // 
@@ -114,7 +122,7 @@
             // 
             // tabPageQuarter
             // 
-            this.tabPageQuarter.Controls.Add(this.numericUpDownQuartal);
+            this.tabPageQuarter.Controls.Add(this.comboBoxQuartal);
             this.tabPageQuarter.Controls.Add(this.buttonCreateScheduleQuartal);
             this.tabPageQuarter.Controls.Add(this.label1);
             this.tabPageQuarter.Controls.Add(this.label2);
@@ -126,29 +134,6 @@
             this.tabPageQuarter.TabIndex = 1;
             this.tabPageQuarter.Text = "Квартал";
             this.tabPageQuarter.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDownQuartal
-            // 
-            this.numericUpDownQuartal.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
-            this.numericUpDownQuartal.Location = new System.Drawing.Point(567, 45);
-            this.numericUpDownQuartal.Maximum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.numericUpDownQuartal.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownQuartal.Name = "numericUpDownQuartal";
-            this.numericUpDownQuartal.Size = new System.Drawing.Size(197, 32);
-            this.numericUpDownQuartal.TabIndex = 10;
-            this.numericUpDownQuartal.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // buttonCreateScheduleQuartal
             // 
@@ -190,13 +175,14 @@
             this.comboBoxChangeProducQuartal.Size = new System.Drawing.Size(373, 34);
             this.comboBoxChangeProducQuartal.TabIndex = 5;
             // 
-            // textBoxYaer
+            // comboBoxQuartal
             // 
-            this.textBoxYaer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
-            this.textBoxYaer.Location = new System.Drawing.Point(518, 32);
-            this.textBoxYaer.Name = "textBoxYaer";
-            this.textBoxYaer.Size = new System.Drawing.Size(246, 32);
-            this.textBoxYaer.TabIndex = 5;
+            this.comboBoxQuartal.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
+            this.comboBoxQuartal.FormattingEnabled = true;
+            this.comboBoxQuartal.Location = new System.Drawing.Point(567, 44);
+            this.comboBoxQuartal.Name = "comboBoxQuartal";
+            this.comboBoxQuartal.Size = new System.Drawing.Size(197, 34);
+            this.comboBoxQuartal.TabIndex = 10;
             // 
             // ChangeYear
             // 
@@ -213,7 +199,6 @@
             this.tabPageYar.PerformLayout();
             this.tabPageQuarter.ResumeLayout(false);
             this.tabPageQuarter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuartal)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -227,12 +212,12 @@
         private System.Windows.Forms.TabPage tabPageQuarter;
         private System.Windows.Forms.Label labelYaer;
         private System.Windows.Forms.Button buttonCreateSchedule;
-        private System.Windows.Forms.NumericUpDown numericUpDownQuartal;
         private System.Windows.Forms.Button buttonCreateScheduleQuartal;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxChangeProducQuartal;
-        private System.Windows.Forms.TextBox textBoxYaer;
+        private System.Windows.Forms.ComboBox comboBoxYear;
+        private System.Windows.Forms.ComboBox comboBoxQuartal;
     }
 }
 

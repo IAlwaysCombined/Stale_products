@@ -73,7 +73,6 @@ namespace Stale_products
             {
                 labelOutputText.Text = "Данная модель имеет непостоянный характер спроса";
             }
-            Console.WriteLine(Data.modelProduct);
         }
 
         /// <summary>

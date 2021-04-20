@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using System.Globalization;
 
 namespace Stale_products
 {
@@ -9,15 +10,13 @@ namespace Stale_products
     {
         public static string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=TV.mdb;"; //Строка подключения к бд
         public static string query = "SELECT * FROM Product ORDER BY ID_Product"; //Строка запроса
-        public static string queryCommand = "SELECT * FROM Product WHERE Name_Product = '{0}'"; //Строка запроса
 
         // Объявление объектов
         private OleDbDataAdapter dataAdapter;
         private DataTable tb1;
+        private DataTable tb2;
         private Schedule schedule;
         private OleDbConnection connection;
-        private OleDbCommand command;
-        private OleDbDataReader dataReader;
 
         /// <summary>
         /// Инициализация формы
@@ -48,11 +47,17 @@ namespace Stale_products
             comboBoxChangeProducQuartal.DisplayMember = "Name_Product";
             comboBoxChangeProducQuartal.ValueMember = "ID_Product";
 
-            command = connection.CreateCommand();
-            command.CommandText = String.Format(query, Data.modelProduct);
-            connection.Open();
-            dataReader = command.ExecuteReader();
-            dataReader.Read();
+            //Заполнение comboBox данными из базы данных 
+            comboBoxYear.DataSource = tb1;
+            comboBoxYear.DisplayMember = "Date";
+            comboBoxYear.ValueMember = "ID_Product";
+
+
+
+            comboBoxQuartal.DataSource = tb1;
+            comboBoxQuartal.DisplayMember = "Quartal";
+            comboBoxQuartal.ValueMember = "ID_Product";
+
         }
 
         /// <summary>
@@ -62,7 +67,8 @@ namespace Stale_products
         /// <param name="e"></param>
         private void buttonCreateSchedule_Click(object sender, EventArgs e)
         {
-            if(comboBoxChangeProductYear.SelectedItem != null && textBoxYaer.Text != "")
+            //Условная конструкция, проверяющая заполнение полей
+            if(comboBoxChangeProductYear.SelectedItem != null && comboBoxYear.SelectedItem != null)
             {
                 Data.modelProduct = comboBoxChangeProductYear.Text;
                 schedule = new Schedule();
@@ -71,7 +77,7 @@ namespace Stale_products
             }
             else
             {
-                MessageBox.Show("Заполнит поле год!");
+                MessageBox.Show("Заполните необходимые поля!");
             }
         }
 
@@ -82,7 +88,8 @@ namespace Stale_products
         /// <param name="e"></param>
         private void buttonCreateScheduleQuartal_Click(object sender, EventArgs e)
         {
-            if (comboBoxChangeProducQuartal.SelectedItem != null)
+            //Условная конструкция, проверяющая заполнение полей
+            if (comboBoxChangeProducQuartal.SelectedItem != null && comboBoxYear.SelectedItem != null)
             {
                 Data.modelProduct = comboBoxChangeProducQuartal.Text;
                 schedule = new Schedule();
@@ -91,7 +98,7 @@ namespace Stale_products
             }
             else
             {
-                MessageBox.Show("Заполнит поле квартал!");
+                MessageBox.Show("Заполните необходимые поля!");
             }
         }
     }
